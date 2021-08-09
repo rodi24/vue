@@ -1,32 +1,73 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+ <div>
+  
+  <SourceList 
+  name="Location" 
+  :source="source" 
+  :seetings="locationSeetings" 
+  :onClick="onClick"
+  :detail="locationDetail"
+  
+  
+  >
+  </SourceList>
+
+  <SourceList 
+  name="Feed" 
+  :source="source" 
+  :seetings="feedSeetings" 
+  :onClick="onClick"
+  :detail="feedDetail"
+  >
+  </SourceList>
+  
+</div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import SourceList from "./components/SourceList.vue"
+export default {
+  name: 'App',
 
-#nav {
-  padding: 30px;
-}
+  data(){
+    return {
+      source:{
+        location: "FTP Location",
+        feed: "TMS Feed",
+      },
+      locationSeetings:[ "LocationName", "LocationPlace"],
+      feedSeetings: ["feedName", "FeedPlace"],
+      labellocation: "location",
+      labelFeed: "Feed",
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+      locationDetail:{
+        name: "Location Name",
+        type: "Location Type",
+        password: '123',
+      },
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+      feedDetail:{
+        name: "Feed Name",
+        type: "Feed Type",
+        password: '123',
+      },
+      
+    
+
+    }
+  
+  }, 
+  components:{
+      SourceList
+  },
+
+  methods:{
+    onClick(){
+      console.log("clicked from App");
+    }
+  },
+
+
+  
+};
+</script>
